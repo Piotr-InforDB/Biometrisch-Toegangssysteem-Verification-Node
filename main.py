@@ -16,7 +16,8 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.username_pw_set(username="verification_node", password="admin")
-client.connect("localhost", 1883)
+client.connect("accesscontrol.home", 1883)
+# client.connect("localhost", 1883)
 
 cap = cv2.VideoCapture(0)
 
