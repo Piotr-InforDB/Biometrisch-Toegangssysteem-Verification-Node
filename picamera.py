@@ -1,7 +1,8 @@
+from picamera2 import Picamera2
 import cv2
 import paho.mqtt.client as mqtt
-import numpy as np
 
+# MQTT setup
 def on_connect(client, userdata, flags, rc, properties=None):
     print(f"Connected with result code: {rc}")
 
@@ -15,31 +16,19 @@ client.on_message = on_message
 client.username_pw_set(username="verification_node", password="admin")
 client.connect("accesscontrol.home", 1883)
 
-width, height = 640, 480
-
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'YUYV'))
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-
-if not cap.isOpened():
-    print("Camera failed to open!")
-    exit()
+# PiCamera2 setup
+picam2 = Picamera2()
+config = picam2.create_video_configuration(main={"format": 'XRGB8888', "size": (640, 480)})
+picam2.configure(config)
+picam2.start()
 
 client.loop_start()
 
 while True:
-    ret, frame = cap.read()
-    if not ret or frame is None:
-        print("Failed to grab frame.")
-        continue
+    frame = picam2.capture_array()
 
-    # Fix the shape explicitly here:
-    if frame.shape[0] == 1 or len(frame.shape) == 2:
-        frame = frame.reshape((height, width, 2))
-
-    # Now safely convert YUYV to BGR
-    frame_bgr = cv2.cvtColor(frame, cv2.COLOR_YUV2BGR_YUYV)
+    # Convert frame from XRGB8888 to BGR (OpenCV compatible)
+    frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGBA2BGR)
 
     success, buffer = cv2.imencode('.jpg', frame_bgr, [cv2.IMWRITE_JPEG_QUALITY, 50])
 
