@@ -1,6 +1,9 @@
 import cv2
 import paho.mqtt.client as mqtt
 import numpy as np
+from tensorflow.python.data.experimental.ops.testing import sleep
+
+MQTT_BROKER = 'accesscontrol.home'
 
 def on_connect(client, userdata, flags, rc, properties=None):
     print(f"Connected with result code: {rc}")
@@ -13,7 +16,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.username_pw_set(username="verification_node", password="admin")
-client.connect("accesscontrol.home", 1883)
+client.connect(MQTT_BROKER, 1883)
 
 cap = cv2.VideoCapture(0)
 
