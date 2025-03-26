@@ -18,7 +18,7 @@ client.connect("accesscontrol.home", 1883)
 
 # PiCamera2 setup
 picam2 = Picamera2()
-config = picam2.create_video_configuration(main={"format": 'XRGB8888', "size": (640, 480)})
+config = picam2.create_video_configuration(main={"format": 'XRGB8888', "size": (1920, 1080)})
 picam2.configure(config)
 picam2.start()
 

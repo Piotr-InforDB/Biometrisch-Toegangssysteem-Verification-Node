@@ -1,7 +1,5 @@
 import cv2
 import paho.mqtt.client as mqtt
-import numpy as np
-from tensorflow.python.data.experimental.ops.testing import sleep
 
 MQTT_BROKER = 'accesscontrol.home'
 
