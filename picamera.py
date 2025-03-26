@@ -25,5 +25,8 @@ picam2.start()
 client.loop_start()
 
 while True:
-    frame_buffer = picam2.capture_buffer()
-    client.publish("webcam/feed", frame_buffer)
+    frame = picam2.capture_array()
+    ret, jpeg = cv2.imencode('.jpg', frame)
+
+    if ret:
+        client.publish("webcam/feed", jpeg.tobytes())
