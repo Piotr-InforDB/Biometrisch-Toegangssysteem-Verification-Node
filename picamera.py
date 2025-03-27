@@ -2,6 +2,11 @@ from picamera2 import Picamera2
 import cv2
 import paho.mqtt.client as mqtt
 
+MQTT_USERNAME = 'verification_node'
+MQTT_PASSWORD = 'admin'
+MQTT_BROKER = 'accesscontrol.home'
+MQTT_PORT = 1883
+
 # MQTT setup
 def on_connect(client, userdata, flags, rc, properties=None):
     print(f"Connected with result code: {rc}")
@@ -9,12 +14,12 @@ def on_connect(client, userdata, flags, rc, properties=None):
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
 
-client = mqtt.Client(client_id="verification_node")
+client = mqtt.Client(client_id=MQTT_USERNAME)
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.username_pw_set(username="verification_node", password="admin")
-client.connect("accesscontrol.home", 1883)
+client.username_pw_set(username=MQTT_USERNAME, password=MQTT_PASSWORD)
+client.connect(MQTT_BROKER, MQTT_PORT)
 
 # PiCamera2 setup
 picam2 = Picamera2()
