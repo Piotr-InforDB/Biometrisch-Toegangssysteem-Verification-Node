@@ -6,9 +6,12 @@ RUN apt-get update && \
     apt-get install -y \
     gcc \
     python3-dev \
+    libcap-dev \
     libcamera0.0.3 \
     libcamera-dev \
     gstreamer1.0-libcamera \
+    python3-libcamera \
+    python3-pip \
     && pip install --upgrade pip \
     && pip install --no-cache-dir \
         paho-mqtt \
