@@ -13,6 +13,9 @@ services:
       - LIBCAMERA_LOG_LEVELS=3
     volumes:
       - /dev/shm:/dev/shm
-      - /lib:/lib:ro
+      - /dev/video0:/dev/video0
+      - /dev/vchiq:/dev/vchiq
       - /usr/lib:/usr/lib:ro
+      - /lib:/lib:ro
       - /usr/share:/usr/share:ro
+      - /usr/lib/python3/dist-packages:/usr/lib/python3/dist-packages:ro

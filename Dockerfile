@@ -26,4 +26,4 @@ RUN pip install --no-cache-dir \
 WORKDIR /app
 COPY . .
 
-CMD ["python", "picamera.py"]
+CMD ["python", "main.py"]
