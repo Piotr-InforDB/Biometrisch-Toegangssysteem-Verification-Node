@@ -2,3 +2,10 @@ apt Install:
 docker
 docker-compose
 libcamera-apps
+python3-libcamera
+
+
+host run:
+sudo apt install -y libcamera-apps
+sudo apt install -y python3-libcamera
+sudo apt install -y python3-picamera2 python3-opencv python3-paho-mqtt
