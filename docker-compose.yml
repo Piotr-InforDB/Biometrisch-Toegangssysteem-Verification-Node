@@ -3,6 +3,7 @@ version: '3.8'
 services:
   verification_node:
     build: .
+    container_name: picamera
     restart: unless-stopped
     privileged: true
     devices:
@@ -12,3 +13,6 @@ services:
       - LIBCAMERA_LOG_LEVELS=3
     volumes:
       - /dev/shm:/dev/shm
+      - /lib:/lib:ro
+      - /usr/lib:/usr/lib:ro
+      - /usr/share:/usr/share:ro

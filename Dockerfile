@@ -1,9 +1,9 @@
 FROM python:3.11-slim-bullseye
 
-# System dependencies for OpenCV + picamera2
 RUN apt-get update && apt-get install -y \
     gcc \
     python3-dev \
+    libcap-dev \
     libjpeg-dev \
     libtiff-dev \
     libpng-dev \
@@ -18,13 +18,11 @@ RUN apt-get update && apt-get install -y \
     git \
     && apt-get clean
 
-# Install Python dependencies
 RUN pip install --no-cache-dir \
     opencv-python-headless \
     paho-mqtt \
     picamera2
 
-# Add your script
 WORKDIR /app
 COPY . .
 

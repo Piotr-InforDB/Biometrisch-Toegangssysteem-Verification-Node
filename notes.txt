@@ -1,0 +1,4 @@
+apt Install:
+docker
+docker-compose
+libcamera-apps
