@@ -1,3 +1,4 @@
+from time import sleep
 from picamera2 import Picamera2
 import cv2
 import paho.mqtt.client as mqtt
@@ -6,6 +7,9 @@ MQTT_USERNAME = 'verification_node'
 MQTT_PASSWORD = 'admin'
 MQTT_BROKER = 'accesscontrol.home'
 MQTT_PORT = 1883
+
+FPS = 30
+last_frame = None
 
 # MQTT setup
 def on_connect(client, userdata, flags, rc, properties=None):
@@ -35,3 +39,5 @@ while True:
 
     if ret:
         client.publish("webcam/feed", jpeg.tobytes())
+
+    sleep(1000 / FPS)

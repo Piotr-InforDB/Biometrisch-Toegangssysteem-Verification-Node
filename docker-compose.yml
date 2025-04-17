@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  picamera:
+    build: .
+    privileged: true
+    devices:
+      - /dev/video0:/dev/video0
+    network_mode: host
+    restart: unless-stopped
