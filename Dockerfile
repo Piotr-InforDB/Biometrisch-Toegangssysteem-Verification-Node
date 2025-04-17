@@ -4,12 +4,9 @@ WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y \
-    libcamera0 \
+    libcamera0.0.3 \
     libcamera-dev \
-    python3-libcamera \
-    python3-picamera2 \
-    python3-opencv \
-    libopencv-dev \
+    gstreamer1.0-libcamera \
     && pip install --upgrade pip \
     && pip install --no-cache-dir \
         paho-mqtt \
