@@ -8,8 +8,13 @@ RUN apt-get update && \
     libcamera-dev \
     python3-libcamera \
     python3-picamera2 \
+    python3-opencv \
+    libopencv-dev \
     && pip install --upgrade pip \
-    && pip install paho-mqtt picamera2 opencv-python \
+    && pip install --no-cache-dir \
+        paho-mqtt \
+        picamera2 \
+        opencv-python-headless \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
