@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
   picamera:
-    build:
-      context: ./picamera
+    build: .
     container_name: picamera
     privileged: true
     devices:
