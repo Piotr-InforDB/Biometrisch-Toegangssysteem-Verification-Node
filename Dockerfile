@@ -4,6 +4,8 @@ WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y \
+    gcc \
+    python3-dev \
     libcamera0.0.3 \
     libcamera-dev \
     gstreamer1.0-libcamera \
