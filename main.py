@@ -8,9 +8,11 @@ from messageHandler import MessageHandler
 MQTT_USERNAME = 'verification_node'
 MQTT_PASSWORD = 'admin'
 MQTT_BROKER = 'accesscontrol.home'
+# MQTT_BROKER = 'localhost'
 MQTT_PORT = 1883
 MQTT_TOPICS = [
     'presence',
+    'client/identity',
 ]
 
 FPS = 30
